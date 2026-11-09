@@ -3,6 +3,14 @@ from tkinter import messagebox as mb
 from tkinter import ttk
 import requests
 
+
+def load_cryptocurrencies():
+    response = requests.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1')
+    response.raise_for_status()
+    data = response.json()
+    return data
+
+
 root = Tk()
 root.title('Курсы криптовалют к USD')
 root.geometry('360x120')
